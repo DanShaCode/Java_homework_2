@@ -30,8 +30,8 @@ public class Task1 {
 
         String filtered = selectFrom("null", str);
 
-        System.out.println("The original line: 'name:Ivanov', 'country:Russia', 'city:Moscow', 'age:null'");
+        System.out.println("The original line students: 'name:Ivanov', 'country:Russia', 'city:Moscow', 'age:null'");
         System.out.println();
-        System.out.println("SELECT * FROM line: " + filtered);
+        System.out.println("SELECT * FROM students WHERE column != NULL: " + filtered);
     }
 }
