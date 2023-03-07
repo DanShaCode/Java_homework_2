@@ -8,26 +8,8 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Task2 {
-    public static int[] FillArr(int[] arr, Random rnd){
-        for (int i = 0; i < arr.length; i++){
-            arr[i] = rnd.nextInt(1, 10);
-        }
-        return arr;
-    }
-    public static void main(String[] args) throws SecurityException, IOException {
 
-        System.out.println("\033[H\033[2J");
-
-        Logger logger = Logger.getLogger(Task2.class.getName());
-        SimpleFormatter sf = new SimpleFormatter();
-        FileHandler fh = new FileHandler("task2/BubbleSortLogs.txt");
-        fh.setFormatter(sf);
-        logger.addHandler(fh);
-
-        Random rnd = new Random();
-
-        int[] numbers = new int [rnd.nextInt(10,20)];
-        FillArr(numbers, rnd);
+    private static void BubbleSort(int[] numbers, Logger logger){
 
         int temp = 0;
         int count = 0;
@@ -41,10 +23,36 @@ public class Task2 {
                     count++;
                     String stringCounter = Integer.toString(count);
                     String arr = Arrays.toString(numbers);
-                    logger.info("(" + stringCounter + ")" + " Iteration " + arr);
+                    logger.info("(" + stringCounter + ")" + " Iteration " + arr 
+                    + " change from (" + numbers[j] + ") to (" + numbers[j+1] + ")");
                 }
             }
         }
+
+    }
+
+    private static int[] FillArr(int[] arr, Random rnd){
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = rnd.nextInt(1, 10);
+        return arr;
+    }
+
+    public static void main(String[] args) throws SecurityException, IOException {
+
+        System.out.println("\033[H\033[2J");
+
+        Logger logger = Logger.getLogger(Task2.class.getName());
+        SimpleFormatter sf = new SimpleFormatter();
+        FileHandler fh = new FileHandler("task2/BubbleSortLogs.txt");
+        fh.setFormatter(sf);
+        logger.addHandler(fh);
+
+        Random rnd = new Random();
+
+        int[] numbers = new int [10];
+
+        FillArr(numbers, rnd);
+        BubbleSort(numbers, logger);
 
     }
 }
